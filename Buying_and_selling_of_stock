@@ -1,0 +1,20 @@
+def findmax(price):
+    minPrice=float('inf')
+    maxProfit=0
+
+    for i in range(len(price)):
+        if price[i]<minPrice:
+            minPrice=price[i]
+        elif price[i]-minPrice>maxProfit:
+            print(price[i]-minPrice)
+            maxProfit=price[i]-minPrice
+    return maxProfit
+
+price=[7,1,5,3,6,4]
+max_profit=findmax(price)
+print(max_profit)
+
+a=float('inf')
+b=7
+
+print(a>b)
