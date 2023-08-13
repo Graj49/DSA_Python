@@ -1,0 +1,16 @@
+#If the numbers are Infinite
+
+def BinarySearch(arr,l,r,x):
+    while l<=r:
+        mid=l+(r-l)//2
+        if arr[mid]==x:
+            return mid
+        elif arr[mid]<x:
+            r=mid-1
+            return BinarySearch(arr, l, mid - 1, x)
+arr=[10,30,40,60,15,36,45,64,79,79,79,79,69,81]
+l=0
+r=len(arr)-1
+x=79
+result=BinarySearch(arr,l,r,x)
+print(result)
