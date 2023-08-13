@@ -1,0 +1,17 @@
+#Questions on Two sum
+def Search(arr,l,r,x):
+    while l<=r:
+        if (arr[l]+arr[r])==x:
+            return (l,r)
+        elif (arr[l]+arr[r])<x:
+            l=l+1
+        else:
+            r=r-1
+    return (-1,-1)
+
+x=280
+arr=[20,40,60,80,90,120,240]
+l=0
+r=len(arr)-1
+result=Search(arr,l,r,x)
+print(result)
