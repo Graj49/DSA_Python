@@ -7,23 +7,28 @@ def ternarySearch(arr,i,j,key):
 
         if key==arr[mid1]:
             return mid1
-        if key==arr[mid2]:
+        elif key==arr[mid2]:
             return mid2
 
         ##First part of the ternary search
-        if key<arr[mid1]:
+        elif key<arr[mid1]:
             return ternarySearch(arr,i,mid1-1,key) ##Recursive call
 
         ##Third part of ternary search
-        if key>arr[mid2]:
+        elif key>arr[mid2]:
             return ternarySearch(arr,mid1+1,j,key) ##Recursive call
+
+        else:
+            return ternarySearch(arr,mid1+1,mid2-1,key) ##Recursive call
 
     ##if searching element is not present in the array
     return -1
 
+##Driver Code
 arr=[20,25,47,56,59,63,65,79,82]
 i=0
 j=len(arr)-1
 key=479
+##function call
 result=ternarySearch(arr,i,j,key)
 print(result)
