@@ -1,0 +1,28 @@
+# K closest point using heapq module #Build of Minheap
+
+from heapq import heappop,heappush
+import math
+#function definition
+def get_dist(x,y):
+    return math.sqrt(x**2+y**2)
+
+def kclosest(points,k):
+    min_heap=[]  #Building minheap
+    n=len(points)
+    for i in range(n):
+        x=points[i][0]
+        y=points[i][1]
+        heappush(min_heap,(get_dist(x,y),points[i]))
+    result=[]
+
+    for i in range(k):
+        result.append(heappop(min_heap)[1])
+    return result
+
+#Driver Code
+points=[[3,3],[5,-1],[-2,4]]
+k=2
+
+#Function calling
+result=kclosest(points,k)
+print(result)
