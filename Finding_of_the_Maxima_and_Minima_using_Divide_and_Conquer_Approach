@@ -1,0 +1,56 @@
+## Finding of the Maxima and Minima using Divide and Conquer Approach
+
+##Method definition of Max and Min function
+##Time complexity --> O(n)
+
+def findMaxandMin(arr,i,j):
+    ##small problem
+    ##single element in array
+    if i==j:
+        max_val=arr[i]
+        min_val=arr[i]
+
+    ##two elements in array
+    elif i==j-1:
+        if arr[i]<arr[j]:
+            max_val=arr[j]
+            min_val=arr[i]
+        else:
+            max_val=arr[i]
+            min_val=arr[j]
+
+    ##Big problem --> n > 2
+    else:
+        ##Divide and Conquer approach
+        ##1.Divide
+        mid=i+(j-i)//2  ##Using this formula to find mid to avoid overflow condition
+
+        ##2.Recursion --> Conquer (Two trees will be formed)
+        max1,min1=findMaxandMin(arr,i,mid)
+        max2,min2=findMaxandMin(arr,mid+1,j)
+
+        ##3. Combine
+        ##To find final maxima
+        if max1<max2:
+            max_val=max2
+        else:
+            max_val=max1
+
+        ##To find final minima
+        if min1<min2:
+            min_val=min1
+        else:
+            min_val=min2
+    return max_val,min_val
+
+##Driver code
+arr=[20,39,45,65,21,44,89,92]
+##i is starting index
+i=0
+##j is ending index
+j=len(arr)-1
+
+##function calling
+max_val,min_val =findMaxandMin(arr,i,j)
+print(max_val,min_val)
+
