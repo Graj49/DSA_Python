@@ -1,2 +1,2 @@
 # DSA
-For Practice
+DSA Using Python
