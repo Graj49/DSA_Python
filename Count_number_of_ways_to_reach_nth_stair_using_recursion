@@ -1,0 +1,24 @@
+##Number of ways to "nth" stair
+
+##function definition
+
+def possibilities(n):
+
+    if n==0:
+        return 0
+    elif n==1:
+        return 1
+    elif n==2:
+        return 2
+
+    ##Recursion
+    else:
+        return possibilities(n-1)+possibilities(n-2)
+
+##Driver code
+n=4
+##function calling
+result=possibilities(n)
+print(result)
+
+## Note:- If 'n' is greater, than stack space utilized by recursion will be more and will get Out of Memory or Time Limit Exceeded.
