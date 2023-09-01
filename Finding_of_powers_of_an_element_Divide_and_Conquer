@@ -13,7 +13,7 @@ def findPower(a,n):
         mid=n//2  ##To find mid value
 
         ##2. Conquer
-        b=findPower(a,mid)  ##Skewed tree will be formed
+        b=findPower(a,mid)  ##Skewed tree will be formed ##Recursion
 
     ##3. Combine
     result=b*b
