@@ -1,0 +1,30 @@
+
+##Finding of powers of an element
+
+##Function definition
+def findPower(a,n):
+    ##Small Problem
+    if n==0:
+        return 1
+    elif n==1:
+        return a
+    else:
+        ##1. Divide
+        mid=n//2  ##To find mid value
+
+        ##2. Conquer
+        b=findPower(a,mid)  ##Skewed tree will be formed
+
+    ##3. Combine
+    result=b*b
+    if n%2==0:          ##If number is even, return result
+        return result
+    return result*a     ##If number is odd , multiply that result with self number to get answer
+
+#Driver code
+a=2
+n=16
+
+##Function calling
+result=findPower(a,n)
+print(result)
