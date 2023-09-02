@@ -1,0 +1,85 @@
+##Implementation of Merge Sort
+
+##function definition of Merge Procedure
+##n1+n2=N
+##Mergeprocedure time complexity=O(N)
+
+def mergeprocedure(arr,i,mid,j):
+    ##n1 -> number of elements in the left subarray (i, mid)
+    n1=mid-i+1
+
+    ##n1 -> number of elements in the right subarray (i, mid)
+    n2 = j - mid  ##i.e. n2 = j-(mid+1)+1
+
+    ##initialization of left and right subarray
+    leftsubarray=[0]*n1
+    rightsubarray=[0]*n2
+
+    ##Copy the elements from an array to the subarray
+    for m in range(n1):
+        leftsubarray[m] = arr[i+m]
+
+    for n in range(n2):
+        rightsubarray[n] = arr[mid+1+n]
+
+    ##Taking pointers
+    p = 0 ##for left subarray
+    q = 0 ##for right subarray
+    k = i ##for new array
+
+    ##returning a sorted subarray
+    while p < n1 and q < n2:
+        if leftsubarray[p] <= rightsubarray[q]:
+            arr[k] = leftsubarray[p]
+            p += 1
+        else:
+            arr[k] = rightsubarray[q]
+            q += 1
+        k += 1
+
+    ##copy the entire elements from the left subarray
+    while p < n1:
+        arr[k] = leftsubarray[p]
+        p += 1
+        k += 1
+
+    ##copy the entire elements from the right subarray
+    while q < n2:
+        arr[k] = rightsubarray[q]
+        q += 1
+        k += 1
+
+##function definition of merge sort
+##Approach --> Divide and Conquer
+##Recursion Relation -> 2T(N/2) + N
+##Time complexity -> O(NLOGN)
+
+def mergesort(arr,i,j):
+    if i < j:
+        ##Divide
+        mid=i+(j-i)//2
+
+        ##Conquer
+        ##Recursive call -> Left subtree
+        mergesort(arr,i,mid)
+
+        ##Recursive call -> Right subtree
+        mergesort(arr,mid+1,j)
+
+        ##Combine --> mergeprocedure (function calling)
+        mergeprocedure(arr,i,mid,j)
+
+    return arr
+
+##Driver code
+arr=[50,70,65,13,80,62,98,27]
+
+##starting index
+i=0
+
+##ending index
+j=len(arr)-1
+
+##Function calling
+result=mergesort(arr,i,j)
+print(result)
