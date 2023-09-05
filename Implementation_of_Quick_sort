@@ -1,0 +1,41 @@
+##Implementation of Quick sort
+
+##Method definition of Partition
+
+def partition(arr,p,q):
+    pivot = arr[p]
+    i = p
+    for j in range(i+1,q+1):
+        if arr[j] <= pivot:
+            ##update i
+            i += 1
+
+            ##swap between the values of arr[i] and arr[j]
+            arr[i], arr[j] = arr[j], arr[i]
+
+    ##Final swap between the value of arr[i] and arr[p]
+    arr[i],arr[p] = arr[p], arr[i]
+    return i
+
+##Method definition of Quick sort
+def quicksort(arr,p,q):
+    if p < q:
+        ##Divide and conquer Approach
+        ## 1.Divide
+        ##Function calling for the partition method
+        mid = partition(arr,p,q)
+
+        ## Recursive function call for the left subtree
+        quicksort(arr,p,mid-1)
+
+        ##Recursive function call for the right subtree
+        quicksort(arr,mid+1,q)
+
+    return arr
+
+##Driver code
+arr=[50,70,29,67,12,15,46]
+p=0
+q=len(arr)-1
+result=quicksort(arr,p,q)
+print(result)
