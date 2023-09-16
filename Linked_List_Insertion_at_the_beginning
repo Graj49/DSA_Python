@@ -1,0 +1,33 @@
+##Insertion at the beginning of the Linked List
+
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.nextPtr=None
+
+class LinkedList:
+    def __init__(self):
+        self.head=None
+
+    ##Insert new node at the beginning of the Linked List
+    def insertAtbeginning(self,new_data):
+        ##Create new node for the new_data
+        new_node = Node(new_data)
+        ##Insert at the beginning of the Linked List
+        new_node.nextPtr=self.head
+        self.head=new_node
+
+    ##print the Linked list
+    def printLinkedList(self):
+        temp=self.head
+        while temp:
+            print(str(temp.data)+" ",end=" ")
+            temp=temp.nextPtr
+
+##Driver code
+llist=LinkedList()
+llist.insertAtbeginning(10)
+llist.insertAtbeginning(20)
+llist.insertAtbeginning(30)
+llist.insertAtbeginning(40)
+llist.printLinkedList()
