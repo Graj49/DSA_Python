@@ -1,4 +1,4 @@
-##Insertion at the beginning of the Linked List
+##Insertion of node at the beginning of the Linked List
 
 class Node:
     def __init__(self,data):
