@@ -1,0 +1,30 @@
+## Divide two numbers without using division, multiplication and modulo operator
+
+## Method definition
+def divide(dividend,divisor):
+    dividend=abs(dividend)
+    divisor=abs(divisor)
+    result=0
+
+    while dividend>divisor:
+        shift = 0
+        ## Left shift operator
+        while dividend>=(divisor<<shift):
+            shift+=1
+            result +=(1<<(shift-1))
+            dividend -=divisor<<(shift-1)
+
+    ## Negative case Handling
+        if (dividend<0 and divisor >=0) or (divisor <0 and dividend>=0):
+            result = -result
+    return min(2147483647, max(-2147483648,result))   ## Range is given on Leetcode problem
+
+
+##Driver code
+dividend=47
+divisor=4
+result=divide(dividend,divisor)
+print(result)
+
+## output
+## 11
