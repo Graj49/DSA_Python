@@ -1,0 +1,70 @@
+## Reversal in Linked List
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.nextPtr = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    ##Insert new node at the end of the Linked List
+    def insertAtEnd(self, new_data):
+
+        ##Create a new node for the new data
+        new_node = Node(new_data)
+
+        ##Check whether linked list is empty or different
+        if self.head is None:
+            self.head = new_node
+            return
+
+        ##Insert the data at the end
+        temp = self.head
+        while temp.nextPtr:  ##Means untill it is not None run this while loop
+            temp = temp.nextPtr
+        temp.nextPtr = new_node
+
+    ## To Reverse the singly linked list
+    def reverselist(self):
+        prev=None
+        next=None
+        curr=self.head
+
+        while curr:
+            next=curr.nextPtr
+            curr.nextPtr=prev
+            prev=curr
+            curr=next
+
+        ## To update the head pointer
+        self.head = prev
+
+    ##print the Linked list
+    def printLinkedList(self):
+        temp = self.head
+        while temp:
+            print(str(temp.data) + " ", end=" ")
+            temp = temp.nextPtr
+
+
+##Driver code
+llist = LinkedList()
+
+llist.insertAtEnd(20)
+llist.insertAtEnd(30)
+llist.insertAtEnd(40)
+print("Insertion of nodes at the end of the linked list")
+llist.printLinkedList()
+print()
+llist.reverselist()
+print("Reversal of linked list")
+llist.printLinkedList()
+print()
+
+## Output
+## Insertion of nodes at the end of the linked list
+## 20  30  40  
+## Reversal of linked list
+## 40  30  20 
