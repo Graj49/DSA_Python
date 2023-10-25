@@ -2,6 +2,7 @@
 ## Operations in Linked List
 
 ## Count Number of Nodes in Linked List
+## Time complexity : O(n)
 
 class Node:
     def __init__(self, data):
