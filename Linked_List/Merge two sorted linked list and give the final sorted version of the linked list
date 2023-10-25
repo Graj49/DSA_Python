@@ -1,0 +1,99 @@
+
+## Operations in Linked List
+
+## Merge two sorted linked list and give the final sorted version of the linked list
+
+## Time Complexity:- O(n)
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.nextPtr = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    ##Insert new node at the end of the Linked List
+    def insertAtEnd(self, new_data):
+
+        ##Create a new node for the new data
+        new_node = Node(new_data)
+
+        ##Check whether linked list is empty or different
+        if self.head is None:
+            self.head = new_node
+            return
+
+        ##Insert the data at the end
+        temp = self.head
+        while temp.nextPtr:  ##Means untill it is not None run this while loop
+            temp = temp.nextPtr
+        temp.nextPtr = new_node
+
+
+    ##print the Linked list
+    def printLinkedList(self):
+        temp = self.head
+        while temp:
+            print(str(temp.data) + " ", end=" ")
+            temp = temp.nextPtr
+
+## Merge two sorted Linked List
+## Output should be :- 10->11->20->22->30->33->40->44->50->55
+def mergeList(head1, head2):
+    temp=None
+    ##llist1 is empty
+    if head1 is None:
+        return head2
+
+    ##llist2 is empty
+    if head2 is None:
+        return head1
+
+    if head1.data <= head2.data:
+        temp=head1
+        temp.nextPtr=mergeList(head1.nextPtr,head2)
+
+    else:
+        temp=head2
+        temp.nextPtr=mergeList(head1,head2.nextPtr)
+
+    return temp
+
+
+##Driver code
+llist1 = LinkedList()
+llist2 = LinkedList()
+
+llist1.insertAtEnd(10)
+llist1.insertAtEnd(20)
+llist1.insertAtEnd(30)
+llist1.insertAtEnd(40)
+llist1.insertAtEnd(50)
+print("Linked List 1:")
+llist1.printLinkedList()
+print()
+
+llist2.insertAtEnd(11)
+llist2.insertAtEnd(22)
+llist2.insertAtEnd(33)
+llist2.insertAtEnd(44)
+llist2.insertAtEnd(55)
+print("Linked List 2:")
+llist2.printLinkedList()
+print()
+
+llist3=LinkedList()
+llist3.head=mergeList(llist1.head,llist2.head)
+print("Merge Linked List")
+llist3.printLinkedList()
+
+
+## Output
+## Linked List 1:
+## 10  20  30  40  50
+## Linked List 2:
+## 11  22  33  44  55
+## Merge Linked List
+## 10  11  20  22  30  33  40  44  50  55
