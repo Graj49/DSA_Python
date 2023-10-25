@@ -1,4 +1,6 @@
 ## Deletion of node 
+## Time complexity (worst case -End): O(n)
+## Time complexity (Best case - Beginning): O(1)
 
 class Node:
     def __init__(self, data):
