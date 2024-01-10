@@ -75,11 +75,11 @@ print("Circular Linked List")
 llist.printLinkedList()
 print()
 
-## Output:
+## Output: ## Output will be infinite
 Insertion of nodes at the end of the linked list:-
 10  20  30  40  
 Circular Linked List
 10  20  30  40  
 10  20  30  40  
 10  20  30  40  
-10  20  30  40 
+10  20  30  40  ...... 
