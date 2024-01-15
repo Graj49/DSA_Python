@@ -1,0 +1,94 @@
+## Interview Question
+
+## Palindrome:- To check whether the given Linked List is Palindrome or not
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.nextPtr = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    ##Insert new node at the end of the Linked List
+
+    def insertAtEnd(self, new_data):
+
+        ##Create a new node for the new data
+        new_node = Node(new_data)
+
+        ##Check whether linked list is empty or different
+        if self.head is None:
+            self.head = new_node
+            return
+
+        ##Insert the data at the end
+        temp = self.head
+        while temp.nextPtr:  ##Means untill it is not None run this while loop
+            temp = temp.nextPtr
+        temp.nextPtr = new_node
+
+    ##Insert the new node after any of the previous node
+    def insertAfterNode(self, prev_node, new_data):
+        if prev_node is None:
+            print("Given node must be available in your Linked List")
+            return
+
+        ##Create a new Linked List
+        new_node=Node(new_data)
+        new_node.nextPtr=prev_node.nextPtr ##Updating previous nodes next address into new nodes next address
+        prev_node.nextPtr=new_node  ##Assigning new nodes address into prev nodes next address
+
+
+    ##print the Linked list
+    def printLinkedList(self):
+        temp = self.head
+        while temp:
+            print(str(temp.data) + " ", end=" ")
+            temp = temp.nextPtr
+
+    def isPalindrome(self):
+        stack=[]
+        temp=self.head
+        while temp:
+            stack.append(temp.data)
+            temp=temp.nextPtr
+
+        temp=self.head
+        for ind in range(len(stack)//2):
+            stack_ele=stack.pop()
+
+            if stack_ele==temp.data:  ## Checking if the poped element i.e top value poped, above is same as the first element
+                temp=temp.nextPtr  ## If above check condition is true assign temp with next value i.e. increment
+                continue
+            else:
+                return False
+        return True
+
+##Driver code
+llist = LinkedList()
+
+llist.insertAtEnd(1)
+llist.insertAtEnd(0)
+llist.insertAtEnd(0)
+llist.insertAtEnd(1)
+print("Insertion of nodes at the end of the linked list:-")
+##Function call to print output
+llist.printLinkedList()
+print()
+
+if llist.isPalindrome():
+    print("Given Linked list is Palindrome")
+else:
+    print("Not Palindrome")
+
+
+llist.printLinkedList()
+print()
+
+## Output:-
+## Insertion of nodes at the end of the linked list:-
+## 1  0  0  1  
+## Given Linked list is Palindrome
+## 1  0  0  1 
