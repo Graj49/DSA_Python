@@ -1,0 +1,101 @@
+## Interview Question
+
+## To sort 0s, 1s, 2s in ascending order in Linked List
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.nextPtr = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    ##Insert new node at the end of the Linked List
+
+    def insertAtEnd(self, new_data):
+
+        ##Create a new node for the new data
+        new_node = Node(new_data)
+
+        ##Check whether linked list is empty or different
+        if self.head is None:
+            self.head = new_node
+            return
+
+        ##Insert the data at the end
+        temp = self.head
+        while temp.nextPtr:  ##Means untill it is not None, run this while loop
+            temp = temp.nextPtr
+        temp.nextPtr = new_node
+
+    ##Insert the new node after any of the previous node
+    def insertAfterNode(self, prev_node, new_data):
+        if prev_node is None:
+            print("Given node must be available in your Linked List")
+            return
+
+        ##Create a new Linked List
+        new_node=Node(new_data)
+        new_node.nextPtr=prev_node.nextPtr ##Updating previous nodes next address into new nodes next address
+        prev_node.nextPtr=new_node  ##Assigning new nodes address into prev nodes next address
+
+
+    ##print the Linked list
+    def printLinkedList(self):
+        temp = self.head
+        while temp:
+            print(str(temp.data) + " ", end=" ")
+            temp = temp.nextPtr
+
+
+    def sort012(self):
+        ##Base case condition
+        if self.head is None or self.head.nextPtr is None:
+            return self.head
+
+        ## Create three counters to store the count value for 0,1 and 2
+        count0=0
+        count1=0
+        count2=0
+
+        curr=self.head
+        while curr:
+            if curr.data==0:
+                count0+=1
+            elif curr.data==1:
+                count1+=1
+            else:
+                count2+=1
+            curr=curr.nextPtr
+
+        temp=self.head
+        while temp:
+            if count0>0:
+                temp.data=0
+                count0 -= 1
+            elif count1>0:
+                temp.data=1
+                count1 -= 1
+            else:
+                temp.data=2
+                count2 -= 1
+            temp=temp.nextPtr
+
+
+##Driver code
+llist = LinkedList()
+
+llist.insertAtEnd(1)
+llist.insertAtEnd(0)
+llist.insertAtEnd(1)
+llist.insertAtEnd(2)
+llist.insertAtEnd(0)
+
+llist.printLinkedList()
+print()
+
+llist.sort012()
+print("sorted Number is:-")
+llist.printLinkedList()
+print()
