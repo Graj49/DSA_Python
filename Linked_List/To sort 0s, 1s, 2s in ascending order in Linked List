@@ -99,3 +99,10 @@ llist.sort012()
 print("sorted Number is:-")
 llist.printLinkedList()
 print()
+
+
+## outpuxt:
+
+## 1  0  1  2  0  
+## sorted Number is:-
+## 0  0  1  1  2 
