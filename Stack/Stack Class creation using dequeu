@@ -1,0 +1,49 @@
+## Stack Class creation
+
+from collections import deque
+
+## push, pop, peek, is_empty, size
+
+class Stack:
+    def __init__(self):
+        self.container=deque()
+
+    ##insert an element inside the stack
+    def push(self,val):
+        return self.container.append(val)
+
+    ##return the top most element from stack
+    ## delete an element from stack
+    def pop(self):
+        return self.container.pop()
+
+    ##return the top most element from the stack
+    def peek(self):
+        return self.container[-1]
+
+    ## check whether the stack is empty or not
+    def is_empty(self):
+        return len(self.container)==0
+
+    ## check the size of the stack
+    def size(self):
+        return len(self.container)
+
+
+## Create an object of stack class
+s=Stack()
+s.push(5)
+s.push(10)
+s.push(15)
+s.push(20)
+
+
+## Check the topmost element in stack
+print(s.peek())
+print(s.pop())
+print(s.peek())
+
+#output
+#20
+#20
+#15
