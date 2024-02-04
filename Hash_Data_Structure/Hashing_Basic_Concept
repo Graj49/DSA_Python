@@ -1,0 +1,58 @@
+## Hashing Data Structure
+
+import pandas as pd
+data =pd.read_csv('D:\Pycharm\price.csv')
+print(data)
+
+"""
+Output:
+     Date  Price
+0  Mar-20    345
+1  Mar-21    445
+2  Mar-22    553
+3  Mar-23    678
+4  Mar-25    690
+5  Mar-26    789
+6  Mar-27    598
+7  Mar-28    569
+8  Mar-29    987
+"""
+
+
+## Convert data into list
+datalist=data.values.tolist()
+print(datalist)
+
+# Output:
+# [['Mar-20', 345], ['Mar-21', 445], ['Mar-22', 553], ['Mar-23', 678], ['Mar-25', 690], ['Mar-26', 789], ['Mar-27', 598], ['Mar-28', 569], ['Mar-29', 987]]
+
+## Extract Price of March 2026
+
+#print(datalist[0])
+##output:- Error, list doesn't provide direct accessibility , we have to use for loop for this.
+
+
+##Time Complexity:- O(n)
+## Approach:- Linear Search
+for element in datalist:
+    if element[0]=='Mar-26':
+        print(element[1])
+
+## Output:- 789
+
+## Note: Here the time complexity is O(n), so here there no way where we can directly fetch the direct values in List, so thats why there came a concept of Hashing (dictionary in Python)
+
+#Convert into Dictionary
+hashing=dict(data.values)
+print(hashing)
+
+## Output:- {'Mar-20': 345, 'Mar-21': 445, 'Mar-22': 553, 'Mar-23': 678, 'Mar-25': 690, 'Mar-26': 789, 'Mar-27': 598, 'Mar-28': 569, 'Mar-29': 987}
+
+# Now lets fetch Price of March 2026
+print(hashing['Mar-26'])
+
+# Output:- 789
+
+#Note:-
+# 1. Now its very easy to fetch the values using Hashing ( Internally Hash Table)
+# 2. Whenever there is a requirement of faster lookups and searching required then we will use Hash Data Structure
