@@ -1,0 +1,63 @@
+# Create a class of Hash Table in which we will be able to perform the below operations:
+#1. Addition of an item in the hash table
+#2. Extraction of any item in the hash table
+#3. Creation of any hash function
+
+class HashTable:
+    def __init__(self):
+        self.MAX=10
+        # initialize all elements
+        self.arr=[None for i in range(self.MAX)]
+
+    ## Hash function method definition
+    def hash_function(self,key):
+        summation=0
+        ##size of the hashtable
+        m=10
+        for char in key:
+            summation += ord(char)
+
+        #division modulo hash function
+        return summation % m
+
+    ## addition of an item in the hash table
+    def addItem(self, key, value):
+
+        h=self.hash_function(key)
+        self.arr[h]=value
+
+
+    ## Get any item from the Hash table
+    def getItem(self,key):
+        h=self.hash_function(key)
+        return self.arr[h]
+
+
+
+#create an object of the class HashTable
+obj=HashTable()
+
+# Display the array elements of hash table
+print(obj.arr)
+
+obj.addItem('Mar-2020', 234)
+
+print(obj.arr)
+
+obj.addItem('Mar-2021', 345)
+obj.addItem('Mar-2022', 445)
+obj.addItem('Mar-2023', 553)
+obj.addItem('Mar-2025', 678)
+obj.addItem('Mar-2026', 789)
+obj.addItem('Mar-2027', 598)
+obj.addItem('Mar-2028', 569)
+obj.addItem('Mar-2029', 987)
+
+print(obj.arr)
+
+# Output:
+# [None, None, None, None, None, None, None, None, None, None]
+# [None, None, None, None, None, None, None, None, None, 234]
+# [345, 445, 553, None, 678, 789, 598, 569, 987, 234]
+
+"""
