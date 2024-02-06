@@ -1,0 +1,17 @@
+#Create own hash Function
+
+def hash_fucntion(key):
+    summation=0
+    ##size of the hashtable
+    m=10
+    for char in key:
+        summation += ord(char)
+
+    #division modulo hash function
+    return summation % m
+
+## Function calling
+a=hash_fucntion('March 2020')
+print(a)
+
+#Output:- 9
