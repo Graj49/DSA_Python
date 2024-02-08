@@ -1,0 +1,76 @@
+# Chaining Implementation - to avoid the collisions inside the Hash Table
+
+class HashTable:
+    def __init__(self):
+        # size of hash table is 10
+        self.MAX=10
+        # initialize all elements as None
+        self.arr=[[] for i in range(self.MAX)]
+
+    ## Hash function method definition
+    def hash_function(self,key):
+        summation=0
+        for char in key:
+            summation += ord(char)
+        #division modulo hash function
+        return summation % self.MAX
+
+    ## addition of an item in the hash table
+    def __setitem__(self, key, value):
+        found=False
+        h=self.hash_function(key)
+
+        for index,element in enumerate(self.arr[h]):
+            if len(element)==2 and element[0]==key:
+                self.arr[h][index]=(key,value)
+                found=True
+                break
+        if not found:
+            self.arr[h].append((key,value))
+
+
+    ## Get any item from the Hash table
+    ## element - (key, value)
+    ## element[0] - key
+    ## element[1] - value
+    def __getitem__(self,key):
+        h=self.hash_function(key)
+        for index, element in enumerate(self.arr[h]):
+            if element[0]==key:
+                return element[1]
+
+    # delete the item from the hashtable
+    def __delitem__(self, key):
+        h=self.hash_function(key)
+        for index,element in enumerate(self.arr[h]):
+            if element[0]==key:
+                del self.arr[h][index]
+
+#create an object of the class HashTable
+obj2=HashTable()
+print(obj2.hash_function('march 17'))
+#collisions happen when march 6 and march 17 will be the key because hash value for both is 9 only.
+print(obj2.hash_function('march 17'))
+
+# Output
+# 9
+# 9
+
+obj2['march 6']=20
+obj2['march 17']=27
+
+print(obj2['march 6'])
+print(obj2['march 17'])
+print(obj2.arr)
+
+# output
+# 20
+# 27
+# [[], [], [], [], [], [], [], [], [], [('march 6', 20), ('march 17', 27)]]
+
+del obj2['march 6']
+print(obj2.arr)
+
+#Output:-
+# [[], [], [], [], [], [], [], [], [], [('march 6', 20), ('march 17', 27)]]
+# [[], [], [], [], [], [], [], [], [], [('march 17', 27)]]
