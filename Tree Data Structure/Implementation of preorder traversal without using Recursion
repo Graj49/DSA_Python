@@ -1,0 +1,44 @@
+#Tree Traversal Implementation without using Recursion
+
+#Implementation of preorder traversal without using Recursion
+
+class Node:
+    def __init__(self,data):
+        self.left=None
+        self.right=None
+        self.data=data
+
+# Iterative approach to implement preorder traversal
+def preorder(root):
+    if root is None:
+        return
+
+    stack=[]
+    # Append root node inside the stack
+    stack.append(root)
+
+    while len(stack)>0:
+        popped=stack.pop()
+        print(str(popped.data)+ " ",end= ' ')
+
+        if popped.right:
+            stack.append(popped.right)
+
+        if popped.left:
+            stack.append(popped.left)
+
+# Driver code
+root=Node(10)
+root.left=Node(20)
+root.right=Node(30)
+root.left.left=Node(40)
+root.left.right=Node(50)
+root.right.left=Node(60)
+root.right.right=Node(70)
+print("preorder Traversal of the given binary tree:- ")
+preorder(root)
+print()
+
+#output
+#preorder Traversal of the given binary tree:- 
+#10  20  40  50  30  60  70
