@@ -1,3 +1,4 @@
+
 ## Tree Traversal Implementation without using Recursion
 
 #Implementation of preorder traversal without using Recursion
@@ -57,6 +58,25 @@ def postorder(root):
         data=s2.pop()
         print(data,end=' ')
 
+# Iterative approach to implement Inorder traversal
+# Time complexity:- O(n) , since we are using only 1 'while loop'
+# Space complexity:- O(n), since we are using 1 stack.
+def inOreder(root):
+    current=root
+    stack=[]
+    while (True):
+        if current is not None:
+            stack.append(current)
+            current=current.left
+
+        elif len(stack)>0:
+            current=stack.pop()
+            print(str(current.data)+" " , end=' ')
+            current=current.right
+
+        else:
+            break
+
 # Driver code
 root=Node(10)
 root.left=Node(20)
@@ -74,6 +94,10 @@ print("postorder Traversal of the given binary tree:- ")
 postorder(root)
 print()
 
+print("Inorder Traversal of the given binary tree:- ")
+inOreder(root)
+print()
+
 #output
 #preorder Traversal of the given binary tree:- 
 #10  20  40  50  30  60  70
@@ -81,3 +105,7 @@ print()
 #output:
 # postorder Traversal of the given binary tree:-
 # 40 50 20 60 70 30 10
+
+#output:
+# Inorder Traversal of the given binary tree:-
+# 40  20  50  10  60  30  70
