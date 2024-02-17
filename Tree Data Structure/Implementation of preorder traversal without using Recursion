@@ -1,4 +1,4 @@
-#Tree Traversal Implementation without using Recursion
+## Tree Traversal Implementation without using Recursion
 
 #Implementation of preorder traversal without using Recursion
 
@@ -9,6 +9,9 @@ class Node:
         self.data=data
 
 # Iterative approach to implement preorder traversal
+# Time complexity:- O(n) , since we are using only one 'while loop'
+# Space complexity:- O(n), since we are using one stack D.S
+
 def preorder(root):
     if root is None:
         return
@@ -27,6 +30,33 @@ def preorder(root):
         if popped.left:
             stack.append(popped.left)
 
+
+# Iterative approach to implement Postorder traversal
+# Time complexity:- O(n) , since we are using only 2 'while loop', sum of it will be O(n)
+# Space complexity:- O(n), since we are using 2 stack thats why we are using extra space
+
+def postorder(root):
+    if root is None:
+        return
+
+    s1=[]
+    s2=[]
+    s1.append(root)
+
+    while len(s1)>0:
+        current=s1.pop()
+        s2.append(current.data)
+
+        if current.left!=None:
+            s1.append(current.left)
+
+        if current.right!=None:
+            s1.append(current.right)
+
+    while len(s2)>0:
+        data=s2.pop()
+        print(data,end=' ')
+
 # Driver code
 root=Node(10)
 root.left=Node(20)
@@ -35,10 +65,19 @@ root.left.left=Node(40)
 root.left.right=Node(50)
 root.right.left=Node(60)
 root.right.right=Node(70)
+
 print("preorder Traversal of the given binary tree:- ")
 preorder(root)
+print()
+
+print("postorder Traversal of the given binary tree:- ")
+postorder(root)
 print()
 
 #output
 #preorder Traversal of the given binary tree:- 
 #10  20  40  50  30  60  70
+
+#output:
+# postorder Traversal of the given binary tree:-
+# 40 50 20 60 70 30 10
