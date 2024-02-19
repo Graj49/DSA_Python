@@ -1,0 +1,69 @@
+
+# Create a class of Node in a Binary Search Tree
+
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+
+## Insertion of a Node in a Binary Search Tree
+# Key will be entered by the user
+
+def insertBST(root,key):
+    # Base case condition:- tree is empty
+    if root is None:
+        return Node(key)
+    else:
+        if root.data==key:
+            return root
+        elif root.data<key:
+            # recursive call
+            root.right=insertBST(root.right, key)
+        else:
+            # recursive call
+            root.left=insertBST(root.left, key)
+    return root
+
+## Inorder traversal of the tree
+def inorder(root):
+    if root:
+        inorder(root.left)
+        print(str(root.data)+" ", end = ' ')
+        inorder(root.right)
+
+## Searching of an element in Binary Tree
+def searchBST(root, searchData):
+
+    ## Base case condition
+    if root is None or root.data==searchData:
+        return root
+
+    ## right recursive call
+    if root.data < searchData:
+        return searchBST(root.right,searchData)
+
+    ## left recursive call
+    return searchBST(root.left,searchData)
+
+# Driver Code
+root=Node(50)
+root=insertBST(root,40)
+root=insertBST(root,70)
+root=insertBST(root,60)
+root=insertBST(root,80)
+
+# If after doing the inorder traversal, will give sorted array
+# It is a Binary Search Tree
+print("Inorder Traversal of the tree:")
+inorder(root)
+print()
+
+# Inorder Traversal of the tree:
+# 40  50  60  70  80
+
+searchData=60
+if searchBST(root,searchData):
+    print("search data is present in BST")
+else:
+    print("Search data is not present in BST")
