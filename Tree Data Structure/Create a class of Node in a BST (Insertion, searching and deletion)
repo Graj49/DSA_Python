@@ -1,4 +1,3 @@
-
 # Create a class of Node in a Binary Search Tree
 
 class Node:
@@ -46,6 +45,41 @@ def searchBST(root, searchData):
     ## left recursive call
     return searchBST(root.left,searchData)
 
+
+## Deleting of an element in Binary Tree
+
+def minnode(node):
+    present=node
+    while present.left is not None:
+        present=present.left
+    return present
+
+def delete(root,ele):
+    # base case condition
+    if root is None:
+        return root
+
+    # searching of an element
+    if root.data<ele:
+        #recursion towards right subtree
+        root.right=delete(root.right,ele)
+
+    elif root.data > ele:
+        #recursion towards left subtree
+        root.left=delete(root.left,ele)
+    else:
+        #If there is only one child
+        if root.left is None:
+            return root.right
+        if root.right is None:
+            return root.left
+
+        # Find the minimum in the right subtree, which is the successor of present rootnode
+        tempnode = minnode(root.right)
+        root.data = tempnode.data
+        root.right = delete(root.right, tempnode.data)
+    return root
+
 # Driver Code
 root=Node(50)
 root=insertBST(root,40)
@@ -59,6 +93,7 @@ print("Inorder Traversal of the tree:")
 inorder(root)
 print()
 
+#output:-
 # Inorder Traversal of the tree:
 # 40  50  60  70  80
 
@@ -67,3 +102,14 @@ if searchBST(root,searchData):
     print("search data is present in BST")
 else:
     print("Search data is not present in BST")
+
+deletenode=delete(root,40)
+print("After deleting the Node:")
+inorder(root)
+
+#output:-
+# Inorder Traversal of the tree:
+# 40  50  60  70  80
+# search data is present in BST
+# After deleting the Node:
+# 50  60  70  80
