@@ -1,4 +1,7 @@
 # Create a class of Node in a Binary Search Tree
+#Time complexity:
+#Best case /Average case scenario:- O(logn)
+# worst case scenario:- O(n)
 
 class Node:
     def __init__(self,data):
@@ -74,7 +77,9 @@ def delete(root,ele):
         if root.right is None:
             return root.left
 
-        # Find the minimum in the right subtree, which is the successor of present rootnode
+
+        # If it has both the children, then we find either the max on the left subtree(Inorder Predecessor) or the min on the right subtree(Inorder successor),Then we simply delete thhat node and replace current node's value with the deleted node's value. Here we are following the Inorder Successor. Finally we return the current node.
+        # Find the minimum in the right subtree, which is the successor of present rootnode.
         tempnode = minnode(root.right)
         root.data = tempnode.data
         root.right = delete(root.right, tempnode.data)
