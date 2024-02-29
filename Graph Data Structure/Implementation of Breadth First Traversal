@@ -1,0 +1,45 @@
+
+# Graph Data Structure
+# Breadth First Traversal
+
+# Method Definition for Depth first traversal
+from collections import deque
+queue=deque()
+
+def breadth_first_traversal(greph, visited, node):
+    visited.add(node)
+
+    ##queue - FIFO
+    ##FIFO - appendleft and pop or append or popleft
+
+    queue.appendleft(node)
+    while queue:
+        node=queue.pop()
+        print(node,end=" ")
+
+        for adjacent_node in graph[node]:
+            if adjacent_node not in visited:
+                visited.add(adjacent_node)
+                queue.appendleft(adjacent_node)
+
+# Visited set to keep track of all the visited nodes
+visited=set()
+
+## Driver code
+# Taking Directed Graph
+graph={
+    'A':['B','C','D'],
+    'B':['E'],
+    'C':['E','F'],
+    'D':['F'],
+    'E':['G'],
+    'F':['G'],
+    'G':[]
+}
+
+print("The Breadth first traversal is:-")
+breadth_first_traversal(graph,visited,'A')
+
+## Output
+# The Depth first traversal is:-
+# A B C D E F G
