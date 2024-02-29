@@ -27,6 +27,7 @@ visited=set()
 
 ## Driver code
 # Taking Directed Graph
+# Adjacency List
 graph={
     'A':['B','C','D'],
     'B':['E'],
