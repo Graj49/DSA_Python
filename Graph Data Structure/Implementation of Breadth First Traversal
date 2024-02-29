@@ -42,5 +42,5 @@ print("The Breadth first traversal is:-")
 breadth_first_traversal(graph,visited,'A')
 
 ## Output
-# The Depth first traversal is:-
+# The Breadth first traversal is:-
 # A B C D E F G
