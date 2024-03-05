@@ -1,0 +1,44 @@
+## Greedy Algorithms
+## Implementation of Fractional Knapsack
+
+## Create a class for the objects which contains profit and the weight
+
+class Item:
+    def __init__(self, profit, weight):
+        self.profit=profit
+        self.weight=weight
+
+## fractional knapsack method definition
+def fractionalknapsack(arr, M):
+    ## sort (descending) on the basis of profit/weight
+    arr.sort(key=lambda x:(x.profit/x.weight), reverse=True)
+    for item in arr:
+        print(item.profit, item.weight, item.profit/item.weight)
+    maxProfit=0.0
+    ## decrementing the capacity and increment of the maxprofit
+    for item in arr:
+        if item.weight <= M:
+            M -= item.weight
+            maxProfit += item.profit
+        else:
+            maxProfit += item.profit * (M/item.weight)
+            break
+        return maxProfit
+
+# Driver Code
+M=37
+arr=[Item(25,5), Item(75,10), Item(100,12), Item(50,4), Item(45,7), Item(90,9), Item(30,3)]
+
+## Function call
+maxProfit=fractionalknapsack(arr, M)
+print("Maximum Profit using Greedy algorithm is:-", maxProfit)
+
+## Output:
+# 50 4 12.5
+# 90 9 10.0
+# 30 3 10.0
+# 100 12 8.333333333333334
+# 75 10 7.5
+# 45 7 6.428571428571429
+# 25 5 5.0
+# Maximum Profit using Greedy algorithm is:- 337.5
