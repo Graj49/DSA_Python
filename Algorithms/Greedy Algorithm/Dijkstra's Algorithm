@@ -1,0 +1,44 @@
+
+## Dijkstra's Algorithm
+
+import heapq
+
+def calculate_distance(graph, starting_vertex):
+    distances = {vertex:float('infinity') for vertex in graph}
+    distances[starting_vertex]=0
+
+    pq=[(0, starting_vertex)]
+    while len(pq)>0:
+        current_distance, current_vertex=heapq.heappop(pq)
+
+        if current_distance > distances[current_vertex]:
+            continue
+
+        for neighbor, weight in graph[current_vertex].items():
+            distance=current_distance+weight
+
+            # only consider this new path if its better than any path we've
+            # already found
+            # Relaxation of edges
+            if distance < distances[neighbor]:
+                distances[neighbor]=distance
+                heapq.heappush(pq, (distance, neighbor))
+
+    return distances
+
+## Driver code
+# Storage of the graph is done via adjacency list
+
+distances={
+    'A':{'B':2,'C':5,'D':2,'E':7,'F':50},
+    'B':{'C':2,'D':1,'E':2,'F':60},
+    'C':{'B':3,'E':2,'F':90},
+    'D':{'E':1,'F':3},
+    'E':{'D':4,'F':1},
+    'F':{}
+}
+
+print(calculate_distance(distances,'A'))
+
+## Output:
+# {'A': 0, 'B': 2, 'C': 4, 'D': 2, 'E': 3, 'F': 4}
