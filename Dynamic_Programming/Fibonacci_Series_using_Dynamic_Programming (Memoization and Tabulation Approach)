@@ -1,0 +1,128 @@
+
+                                            ## Fibonacci Series using Dynamic Programming
+
+
+# First Solve the fibonacci series problem using recursion
+
+## Method Definition
+def fib(n):
+    ##base case condition
+    if n==0 or n==1:
+        return n
+    else:
+        result= fib(n-1)+fib(n-2)
+
+    return result
+
+# Driver code
+# function calling
+var1=fib(7)
+print(var1)
+
+# output:- 13
+
+var2=fib(50)
+print(var2)
+# output:- Too much time taken and even throws error
+
+
+## Observation :- Using recursion we are getting an exponential time complexity and when values of n is
+# small, it is giving us the result within few seconds but as n is increasing, the time required to generate
+# the results is too much
+
+# Why it is taking too much time when n is quite high.?
+#Answer:-
+# Overlapping subproblem - Recomputation of same subproblem again and again
+
+
+# Solution of above problem(overlapping subproblem):-
+# Dynamic Programming
+# 1. Memoization (Top Down Approach)
+# 2. Tabulation (Bottom Up Approach)
+
+
+
+# 1. Memoization Approach :- Here we are Using Recursion but storing every
+                            #recursive fucntion call solution in one data structure
+
+# Time Complexity:- O(n)
+# Space complexity:- O(n)
+## Method Definition
+
+def fib_topDown(n, memo):
+    ##storing of results of function call
+    if memo[n] is not None:
+        return memo[n]
+
+    ## base case condition
+    if n==0 or n==1:
+        return n
+    else:
+        ## recursive calls
+        result=fib_topDown(n-1,memo)+fib_topDown(n-2,memo)
+    memo[n]=result ## when ever we are moving towards result calculation it will store inside memo[n] at each and everytime
+    return result
+
+def fib_memo(n):
+    ## create a list to store the results of every function call
+    memo=[None]*(n+1)
+    ##function calling
+    return fib_topDown(n, memo)
+
+print(fib_memo(50))
+# output:-12586269025 -->Result calculation is fast
+
+#print(fib_memo(1000))
+# output :- Maximum recursion depth reached
+
+# Note:-
+# a. Still the Memoization results are far better than normal Recursion but still at some point it is failing.
+# b. When we are calling bigger number it means that, that much stack space is required to store inside it.
+
+# Now to cater the above issue, we will use Tabulation Approach ( Get Rid of Recursion  it self )
+
+#2. Tabulation Approach (Get Rid of Recursion  it self):-
+
+
+# Time Complexity:- O(n)
+# Space complexity:- O(n)
+# Method Definition
+
+def fib_bottomUp(n):
+    bottomUp=[None]*(n+1)
+    bottomUp[0]=0
+    bottomUp[1]=1
+
+    ## No recursive function call
+    for i in range(2, n+1):
+        bottomUp[i]=bottomUp[i-1]+bottomUp[i-2]
+    return bottomUp[n]
+
+print(fib_bottomUp(50))
+# output:- 12586269025 --> faster result
+
+## Tabulation is the finally optimized approach where we got the answer.
+
+# Note:- In terms of complexity wise both Approach have same Time and space complexity, but logically it is different.
+# Note:- Always start from Brute force and optimize the problem slowly.
+
+
+
+# Now lets see how we can approach to Highly optimized solution
+# Space complexity in Tabulation approach is constant
+# Time Complexity:- O(n)
+# Space complexity:- O(1) --> IMP. PART
+
+# Highly optimized solution of Fibonacci series problem
+
+def fib(n):
+    first=0
+    second=1
+    for i in range(2, n+1):
+        next=first+second
+        first,second=second,next
+    return next
+
+print(fib(50))
+
+#output:- 12586269025 --> Most fastest result
