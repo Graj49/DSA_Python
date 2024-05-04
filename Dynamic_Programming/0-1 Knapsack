@@ -90,3 +90,8 @@ print("Maximum profit in knapsack is", knapsack(W,wt,val,n))
 
 # Output:-
 # Maximum profit in knapsack is 3
+
+
+# Note:-
+# We solved problem in Brute force --> O(2^n) (which is Exponential Time complexity)
+# After optimizing using D.P it gave --> O(n*W) (Which is Polynomial Time Complexity)
